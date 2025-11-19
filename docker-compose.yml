@@ -1,0 +1,29 @@
+services:
+  nodeapp:
+    build:
+      context: .
+      dockerfile: Dockerfile-multistage
+    container_name: nodeapp
+    networks: 
+      - ng-net
+    ports:
+      - "3000:3000"
+
+
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    networks: 
+      - ng-net
+    ports: 
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /home/ubuntu/online_shop/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - nodeapp
+
+networks:
+  ng-net:
