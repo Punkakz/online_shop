@@ -20,8 +20,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /home/ubuntu/workspace/online-shopping/nginx.conf:/etc/nginx/conf.d/default.conf
-      - /etc/letsencrypt  :/etc/letsencrypt
+      - /home/ubuntu/jenkins/workspace/online-shopping/nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
       - nodeapp
 
